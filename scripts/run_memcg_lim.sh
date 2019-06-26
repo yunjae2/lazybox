@@ -13,6 +13,12 @@ COMM=$2
 
 MEMCG_ORIG_DIR=/sys/fs/cgroup/memory/
 MEMCG_DIR=/sys/fs/cgroup/memory/run_memcg_lim_$USER
+
+if [ -d "$MEMCG_DIR" ]
+then
+	sudo rmdir $MEMCG_DIR
+fi
+
 sudo mkdir $MEMCG_DIR
 sudo bash -c "echo $$ > $MEMCG_DIR/tasks"
 sudo bash -c "echo $MEMLIM > $MEMCG_DIR/memory.limit_in_bytes"
