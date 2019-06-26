@@ -22,5 +22,10 @@ do
 	do
 		ps -o vsz=,rss=,pid=,cmd= -f $P
 	done
+
+	if ! kill -0 $PIDS > /dev/null 2>&1
+	then
+		break
+	fi
 	sleep 1
 done
