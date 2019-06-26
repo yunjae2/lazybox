@@ -8,7 +8,7 @@ then
 	exit 1
 fi
 
-MEMLIM=$(($1 * 1024 * 1024))
+MEMLIM=`printf '%.0f\n' "$(echo "scale=1; $1*1024*1024" | bc -l)"`
 COMM=$2
 
 MEMCG_ORIG_DIR=/sys/fs/cgroup/memory/
